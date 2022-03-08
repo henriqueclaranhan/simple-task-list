@@ -1,0 +1,191 @@
+:root {
+    --gray: #2A2A31;
+    --darkest-gray: #201F24;
+    --card-border: #1D1C21;
+    --input-focused-border: #ffffff46;
+    --input-focused-bg: #2a2a31a4;
+    --blue: #4CC2FF;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("../assets/fonts/Poppins.ttf");
+}
+
+* {
+    caret-color: var(--blue);
+    color: #FFF;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+}
+
+body {
+    padding: 3rem 0 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Poppins", sans-serif;
+    background-color: var(--darkest-gray);
+}
+
+button {
+    cursor: pointer;
+}
+
+content {
+    width: 52%;
+    min-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#application-name {
+    padding: 2rem 0;
+    font-size: 2.6rem;
+    font-weight: 600;
+}
+
+.horizontal-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 12px 10px 8px;
+
+    border-radius: 5px;
+    border: 1px solid var(--card-border);
+    
+    font-size: 1.15rem;
+    line-height: 21px;
+    background-color: var(--gray);
+}
+
+#new-task {
+    width: 100%;
+    display: flex;
+}
+
+#new-task input {
+    margin-top: 8px;
+    margin-bottom: 24px;
+    outline: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right-width: 0;
+    border-left: 2px solid var(--blue);
+}
+
+#new-task input:focus {
+    border-color: var(--input-focused-border);
+    background-color: var(--input-focused-bg);
+    border-left-color: var(--blue);
+}
+
+#new-task button {
+    width: 48px;
+    height: 48px;
+    margin-top: 8px;
+
+    border-radius: 0 5px 5px 0;
+    border: 1px solid var(--card-border);
+    border-left-width: 0;
+    background-color: var(--blue);
+}
+
+#plus-icon {
+    --icon-size: 20px;
+    margin: auto;
+    width: var(--icon-size);
+    height: var(--icon-size);
+
+    display: flex;
+    align-items: center;
+}
+
+#plus-icon div {
+    width: var(--icon-size);
+    height: 3px;
+    background-color: var(--darkest-gray);
+}
+
+#plus-icon div:nth-child(1) {
+    position: absolute;
+}
+
+#plus-icon div:nth-child(2) {
+    z-index: 2;
+    transform: rotate(90deg);
+}
+
+#tasks-section {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    row-gap: 11px;
+    width: 100%;
+}
+
+.task-card {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+}
+
+.task-card p {
+    width: fit-content;
+}
+
+.check-button {
+    width: 46px;
+    height: calc(100% + 20px);
+    max-height: 46px;
+}
+
+.check-circle {
+    --circle-size: 25px;
+    margin: auto;
+    border-radius: 50%;
+    width: var(--circle-size);
+    height: var(--circle-size);
+    border: 2px solid #FFF;
+}
+
+footer {
+     margin-top: 45px;
+     
+}
+
+@media (max-width: 391px) {
+    content {
+        width: 100%;
+        min-width: unset;
+        padding: 0 1rem;
+    }
+
+    #application-name {
+        font-size: 2rem;
+    }
+
+    .horizontal-card {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 391px) and (max-width: 767px) {
+    body {
+        padding-top: 1.2rem;
+    }
+
+    content {
+        width: 100%;
+        min-width: unset;
+        padding: 0 2rem;
+    }
+}
