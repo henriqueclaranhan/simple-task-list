@@ -1,3 +1,5 @@
+import * as tasksData from "./tasksData.js"
+
 const newTaskInput = document.querySelector("#new-task input");
 const newTaskButton = document.querySelector("#new-task button");
 const tasksSection = document.querySelector("#tasks-section");
@@ -17,21 +19,31 @@ const addCheckListeners = () => {
 
     checkButtons.forEach(checkButton => {
         checkButton.addEventListener("click", () => {
-            removeTask(checkButton.parentNode);
+            let taskCard = checkButton.parentElement;
+            let taskId = Array.prototype.indexOf.call(tasksSection.children, taskCard);
+
+            removeTask(taskCard, taskId);
         }, false);
     });
+}
+
+const renderTaskCard = (taskText) => {
+    tasksSection.innerHTML += createTaskCard(taskText);
+    addCheckListeners();
 }
 
 const createNewTask = (taskText) => {
     if (taskText === "") return;
 
-    tasksSection.innerHTML += createTaskCard(taskText);
-    addCheckListeners();
+    tasksData.addTask(taskText);
+    renderTaskCard(taskText);
+
     newTaskInput.value = "";
 }
 
-const removeTask = (taskCard) => {
+const removeTask = (taskCard, taskId) => {
     taskCard.remove();
+    tasksData.removeTask(taskId);
 }
 
 const getInputValue = () => {
@@ -47,3 +59,9 @@ newTaskInput.addEventListener("keydown", (keyboardEvent) => {
 newTaskButton.addEventListener("click", () => {
     createNewTask(getInputValue());
 }, false);
+
+window.onload = () => {
+    tasksData.getTasks().forEach(task => {
+        renderTask(task.text);
+    });
+}
