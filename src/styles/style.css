@@ -60,7 +60,6 @@ content {
 
     width: 100%;
     min-height: 48px;
-    padding: 10px 12px 10px 8px;
 
     border-radius: 5px;
     border: 1px solid var(--card-border);
@@ -83,6 +82,7 @@ content {
     border-bottom-right-radius: 0;
     border-right-width: 0;
     border-left: 2px solid var(--blue);
+    padding: 10px 12px 10px 8px;
 }
 
 #new-task input:focus {
@@ -139,19 +139,20 @@ content {
     display: flex;
     flex-direction: row;
     column-gap: 10px;
+    padding: 4px 12px 4px 8px;
 }
 
 .task-card p {
     width: 100%;
-    padding-right: 4rem;
+    padding: 7px 4rem 7px 0;
     word-wrap: break-word;
 }
 
 .check-button {
-    width: 46px;
-    min-width: 46px;
-    height: calc(100% + 20px);
-    height: 46px;
+    --check-button-size: 46px;
+    width: var(--check-button-size);
+    min-width: var(--check-button-size);
+    height: var(--check-button-size);
 }
 
 .check-circle {
