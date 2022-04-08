@@ -1,5 +1,3 @@
-import * as tasksData from "./tasksData.js"
-
 const newTaskInput = document.querySelector("#new-task input");
 const newTaskButton = document.querySelector("#new-task button");
 const tasksSection = document.querySelector("#tasks-section");
@@ -35,7 +33,7 @@ const renderTaskCard = (taskText) => {
 const createNewTask = (taskText) => {
     if (taskText === "") return;
 
-    tasksData.addTask(taskText);
+    addTaskToStorage(taskText);
     renderTaskCard(taskText);
 
     newTaskInput.value = "";
@@ -43,7 +41,7 @@ const createNewTask = (taskText) => {
 
 const removeTask = (taskCard, taskId) => {
     taskCard.remove();
-    tasksData.removeTask(taskId);
+    deleteTaskFromStorage(taskId);
 }
 
 const getInputValue = () => {
@@ -61,7 +59,7 @@ newTaskButton.addEventListener("click", () => {
 }, false);
 
 window.onload = () => {
-    tasksData.getTasks().forEach(task => {
-        renderTask(task.text);
+    getTasksFromStorage().forEach(task => {
+        renderTaskCard(task.text);
     });
 }

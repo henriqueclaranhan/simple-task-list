@@ -1,4 +1,4 @@
-const getTasks = () => {
+const getTasksFromStorage = () => {
     return JSON.parse(localStorage.getItem("tasks") || "[]");
 }
 
@@ -6,8 +6,8 @@ const getLastTaskIndex = (tasks) => {
     return Object.keys(tasks).length - 1;
 }
 
-const addTask = (taskText) => {
-    let tasks = getTasks();
+const addTaskToStorage = (taskText) => {
+    let tasks = getTasksFromStorage();
 
     tasks.push({
         "id": getLastTaskIndex(tasks) + 1,
@@ -32,8 +32,8 @@ const getReorderedTasks = (tasks) => {
     return reorderedTasks;
 }
 
-const removeTask = (taskId) => {
-    let tasks = getTasks();
+const deleteTaskFromStorage = (taskId) => {
+    let tasks = getTasksFromStorage();
     
     delete tasks[taskId];
     tasks = getReorderedTasks(tasks);
@@ -44,5 +44,3 @@ const removeTask = (taskId) => {
 const clearStorage = () => {
     localStorage.setItem("tasks", "[]");
 }
-
-export { getTasks, addTask, removeTask }
