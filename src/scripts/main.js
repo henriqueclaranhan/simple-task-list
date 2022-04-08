@@ -22,24 +22,28 @@ const addCheckListeners = () => {
     });
 }
 
+const createNewTask = (taskText) => {
+    if (taskText === "") return;
+
+    tasksSection.innerHTML += createTaskCard(taskText);
+    addCheckListeners();
+    newTaskInput.value = "";
+}
+
 const removeTask = (taskCard) => {
     taskCard.remove();
 }
 
-const createNewTask = () => {
-    if(newTaskInput.value !== "") {
-        tasksSection.innerHTML += createTaskCard(newTaskInput.value);
-        newTaskInput.value = "";
-        addCheckListeners();
-    }
+const getInputValue = () => {
+    return newTaskInput.value;
 }
 
 newTaskInput.addEventListener("keydown", (keyboardEvent) => {
     if(keyboardEvent.key === "Enter") {
-        createNewTask();
+        createNewTask(getInputValue());
     }
 })
 
 newTaskButton.addEventListener("click", () => {
-    createNewTask();
+    createNewTask(getInputValue());
 }, false);
