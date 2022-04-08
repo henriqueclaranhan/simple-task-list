@@ -142,13 +142,16 @@ content {
 }
 
 .task-card p {
-    width: fit-content;
+    width: 100%;
+    padding-right: 4rem;
+    word-wrap: break-word;
 }
 
 .check-button {
     width: 46px;
+    min-width: 46px;
     height: calc(100% + 20px);
-    max-height: 46px;
+    height: 46px;
 }
 
 .check-circle {
