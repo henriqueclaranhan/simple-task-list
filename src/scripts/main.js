@@ -2,45 +2,40 @@ const newTaskInput = document.querySelector("#new-task input");
 const newTaskButton = document.querySelector("#new-task button");
 const tasksSection = document.querySelector("#tasks-section");
 
-const createTaskCard = (taskText) => {
-    return `
-    <div class="horizontal-card task-card">
-        <button class="check-button">
-            <div class="check-circle"></div>
-        </button>
-        <p>${taskText}</p>
-    </div>`
-}
+const createTaskCard = (taskText, taskId) => {
+    let divCard = document.createElement("div");
+    let buttonCheck = document.createElement("button");
+    let pTaskText = document.createElement("p");
 
-const addCheckListeners = () => {
-    let checkButtons = document.querySelectorAll(".check-button");
+    divCard.classList.add("horizontal-card", "task-card");
+    buttonCheck.classList.add("check-button");
 
-    checkButtons.forEach(checkButton => {
-        checkButton.addEventListener("click", () => {
-            let taskCard = checkButton.parentElement;
-            let taskId = Array.prototype.indexOf.call(tasksSection.children, taskCard);
+    buttonCheck.innerHTML = `<div class="check-circle"></div>`;
+    pTaskText.innerText = taskText;
 
-            removeTask(taskCard, taskId);
-        }, false);
+    divCard.appendChild(buttonCheck);
+    divCard.appendChild(pTaskText);
+
+    buttonCheck.addEventListener("click", () => {
+        removeTask(divCard, taskId);
     });
-}
 
-const renderTaskCard = (taskText) => {
-    tasksSection.innerHTML += createTaskCard(taskText);
-    addCheckListeners();
+    tasksSection.appendChild(divCard);
 }
 
 const createNewTask = (taskText) => {
     if (taskText === "") return;
 
+    let newTaskId = getLastTaskIndex() + 1;
+
     addTaskToStorage(taskText);
-    renderTaskCard(taskText);
+    createTaskCard(taskText, newTaskId);
 
     newTaskInput.value = "";
 }
 
 const removeTask = (taskCard, taskId) => {
-    taskCard.remove();
+    tasksSection.removeChild(taskCard);
     deleteTaskFromStorage(taskId);
 }
 
@@ -60,6 +55,8 @@ newTaskButton.addEventListener("click", () => {
 
 window.onload = () => {
     getTasksFromStorage().forEach(task => {
-        renderTaskCard(task.text);
+        if(task === null) return;
+        
+        createTaskCard(task.text, task.id);
     });
 }
