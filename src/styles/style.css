@@ -75,6 +75,7 @@ content {
 }
 
 #new-task input {
+    z-index: 2;
     margin-top: 8px;
     margin-bottom: 24px;
     outline: none;
@@ -140,6 +141,7 @@ content {
     flex-direction: row;
     column-gap: 10px;
     padding: 4px 12px 4px 8px;
+    will-change: opacity;
 }
 
 .task-card p {

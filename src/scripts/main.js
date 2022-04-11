@@ -34,8 +34,44 @@ const createNewTask = (taskText) => {
     newTaskInput.value = "";
 }
 
+const slideCardUp = (taskCard) => {
+    taskCard.classList.add("removed-task-card");
+
+    let marginTopSlideHeight = -taskCard.offsetHeight - 11;
+    const keyFrameSlideTop = document.createElement("style");
+
+    keyFrameSlideTop.innerHTML = `
+        @keyframes slide-up {
+            0% {
+                opacity: 1;
+                margin-top: 0;
+            }
+
+            40% {
+                opacity: 0;
+            }
+        
+            100% {
+                opacity: 0;
+                margin-top: ${marginTopSlideHeight}px;
+            }
+        }
+
+        .removed-task-card {
+            animation: slide-up .5s ease;
+        }
+    `;
+
+    taskCard.appendChild(keyFrameSlideTop);
+}
+
 const removeTask = (taskCard, taskId) => {
-    tasksSection.removeChild(taskCard);
+    slideCardUp(taskCard);
+
+    setTimeout(() => {
+        tasksSection.removeChild(taskCard);
+    }, 495);
+
     deleteTaskFromStorage(taskId);
 }
 
