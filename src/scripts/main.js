@@ -20,7 +20,7 @@ const createTaskCard = (taskText, taskId) => {
         removeTask(divCard, taskId);
     });
 
-    tasksSection.appendChild(divCard);
+    tasksSection.prepend(divCard);
 }
 
 const createNewTask = (taskText) => {

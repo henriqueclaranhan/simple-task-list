@@ -130,7 +130,7 @@ content {
 
 #tasks-section {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
     row-gap: 11px;
     width: 100%;
