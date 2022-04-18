@@ -58,6 +58,7 @@ const slideCardUp = (taskCard) => {
         }
 
         .removed-task-card {
+            z-index: -1;
             animation: slide-up .5s ease;
         }
     `;
@@ -92,7 +93,7 @@ newTaskButton.addEventListener("click", () => {
 window.onload = () => {
     getTasksFromStorage().forEach(task => {
         if(task === null) return;
-        
+
         createTaskCard(task.text, task.id);
     });
 }
